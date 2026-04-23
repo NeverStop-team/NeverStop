@@ -46,7 +46,7 @@
   <section class="page-hero">
     <div class="section-title"><h2>News</h2></div>
     <div class="headline">Latest Updates</div>
-    <div class="subheadline">ニュースはこのページでまとめて表示する構成に変更。</div>
+    <div class="subheadline"></div>
   </section>
 
   <section class="section grid-news">
@@ -71,5 +71,20 @@
   </section>
   <footer>© 2026 NeverStop All Rights Reserved. | EST. 2026</footer>
 </main>
+
+<script>
+document.querySelectorAll('a').forEach(link => {
+  if(link.hostname === window.location.hostname){
+    link.addEventListener('click', function(e){
+      e.preventDefault();
+      document.body.classList.add('page-exit');
+      setTimeout(()=>{
+        window.location = this.href;
+      },300);
+    });
+  }
+});
+</script>
+
 </body>
 </html>

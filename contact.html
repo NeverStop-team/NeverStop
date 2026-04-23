@@ -46,7 +46,7 @@
   <section class="page-hero">
     <div class="section-title"><h2>Contact</h2></div>
     <div class="headline">Get In Touch</div>
-    <div class="subheadline">連絡先・参加希望・スポンサー問い合わせ用ページ。</div>
+    <div class="subheadline"></div>
   </section>
 
   <section class="section">
@@ -63,5 +63,20 @@
   </section>
   <footer>© 2026 NeverStop All Rights Reserved. | EST. 2026</footer>
 </main>
+
+<script>
+document.querySelectorAll('a').forEach(link => {
+  if(link.hostname === window.location.hostname){
+    link.addEventListener('click', function(e){
+      e.preventDefault();
+      document.body.classList.add('page-exit');
+      setTimeout(()=>{
+        window.location = this.href;
+      },300);
+    });
+  }
+});
+</script>
+
 </body>
 </html>

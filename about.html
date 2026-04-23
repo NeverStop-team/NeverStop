@@ -66,5 +66,20 @@
   </section>
   <footer>© 2026 NeverStop All Rights Reserved. | EST. 2026</footer>
 </main>
+
+<script>
+document.querySelectorAll('a').forEach(link => {
+  if(link.hostname === window.location.hostname){
+    link.addEventListener('click', function(e){
+      e.preventDefault();
+      document.body.classList.add('page-exit');
+      setTimeout(()=>{
+        window.location = this.href;
+      },300);
+    });
+  }
+});
+</script>
+
 </body>
 </html>

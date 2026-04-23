@@ -437,3 +437,18 @@ footer{
   .profile-layout{grid-template-columns:1fr}
   .account-grid{grid-template-columns:1fr}
 }
+
+/* page transition */
+body {
+  animation: fadeInPage 0.5s ease;
+}
+@keyframes fadeInPage {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.page-exit {
+  animation: fadeOutPage 0.3s ease forwards;
+}
+@keyframes fadeOutPage {
+  to { opacity: 0; transform: translateY(-10px); }
+}
