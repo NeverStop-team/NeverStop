@@ -299,3 +299,141 @@ footer{
   .portrait svg{width:94px; height:140px}
   .btn{width:100%}
 }
+
+
+.member-link-card{
+  display:block;
+  color:inherit;
+  transition:transform .18s ease, filter .18s ease;
+}
+.member-link-card:hover{
+  transform:translateY(-4px);
+  filter:brightness(1.04);
+}
+.member-link-card:focus-visible{
+  outline:2px solid var(--red);
+  outline-offset:4px;
+}
+.player-card.clickable{
+  cursor:pointer;
+}
+.player-card.clickable::after{
+  content:"OPEN PROFILE";
+  position:absolute;
+  right:14px;
+  bottom:12px;
+  color:var(--red);
+  font-family:"Orbitron","Rajdhani",sans-serif;
+  font-size:.72rem;
+  letter-spacing:.18em;
+  font-weight:800;
+}
+.profile-layout{
+  display:grid;
+  grid-template-columns: 340px 1fr;
+  gap:20px;
+  align-items:start;
+}
+.profile-side{
+  padding:22px;
+}
+.profile-portrait{
+  min-height:320px;
+  position:relative;
+  background:
+    radial-gradient(circle at 50% 24%, rgba(255,255,255,.12), transparent 28%),
+    radial-gradient(circle at 50% 65%, rgba(255,0,0,.15), transparent 34%),
+    linear-gradient(180deg, #111 0%, #060606 100%);
+  border:1px solid rgba(255,0,0,.35);
+  clip-path:polygon(8% 0,100% 0,100% 90%,92% 100%,0 100%,0 10%);
+  overflow:hidden;
+  display:grid;
+  place-items:end center;
+  padding-top:24px;
+}
+.profile-portrait svg{
+  width:220px;
+  height:300px;
+  filter:drop-shadow(0 0 20px rgba(255,0,0,.18));
+}
+.profile-name{
+  margin-top:18px;
+  font-family:"Orbitron","Rajdhani",sans-serif;
+  font-size:1.6rem;
+  letter-spacing:.08em;
+  font-weight:800;
+}
+.profile-role{
+  margin-top:8px;
+  color:var(--red);
+  font-family:"Orbitron","Rajdhani",sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.22em;
+  font-size:.92rem;
+  font-weight:800;
+}
+.profile-meta{
+  margin-top:16px;
+  display:grid;
+  gap:10px;
+}
+.meta-item{
+  padding:12px 14px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.02);
+}
+.meta-label{
+  color:#a6a6a6;
+  text-transform:uppercase;
+  font-family:"Orbitron","Rajdhani",sans-serif;
+  letter-spacing:.14em;
+  font-size:.75rem;
+  margin-bottom:4px;
+}
+.meta-value{
+  color:#f4f4f4;
+  font-size:1rem;
+}
+.profile-main{
+  display:grid;
+  gap:18px;
+}
+.account-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+.account-card{
+  padding:18px;
+  border:1px solid rgba(255,0,0,.35);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01)),
+    #050505;
+}
+.account-card h3{
+  font-family:"Orbitron","Rajdhani",sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  font-size:1rem;
+  margin-bottom:10px;
+}
+.account-card p{
+  color:#d9d9d9;
+  line-height:1.7;
+  margin-bottom:14px;
+}
+.back-link{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  color:var(--red);
+  font-family:"Orbitron","Rajdhani",sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  font-size:.88rem;
+  margin-bottom:18px;
+}
+@media (max-width:980px){
+  .profile-layout{grid-template-columns:1fr}
+  .account-grid{grid-template-columns:1fr}
+}
