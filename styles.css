@@ -196,16 +196,32 @@ main{padding:28px 0 46px}
 .btn:hover{border-color:rgba(255,80,80,.95); box-shadow:0 0 18px rgba(255,0,0,.15)}
 .feature-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
 .feature-card{
-  min-height:196px; padding:28px 20px;
+  min-height:220px;
+  padding:28px 18px 26px;
   clip-path:polygon(8% 0,100% 0,100% 86%,92% 100%,0 100%,0 14%);
-  display:grid; place-items:center; text-align:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
 }
 .feature-icon{width:74px; height:74px; margin:0 auto 18px; color:var(--red); display:grid; place-items:center}
 .feature-card h3{
-  text-transform:uppercase; letter-spacing:.16em;
-  font-family:"Orbitron","Rajdhani",sans-serif; font-size:1.55rem; margin-bottom:8px;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  font-family:"Orbitron","Rajdhani",sans-serif;
+  font-size:clamp(1.45rem, 2vw, 1.7rem);
+  margin-bottom:10px;
+  line-height:1.1;
+  white-space:normal;
+  word-break:break-word;
 }
-.feature-card p{color:#dedede; font-size:1rem}
+.feature-card p{
+  color:#dedede;
+  font-size:1rem;
+  line-height:1.6;
+  white-space:normal;
+  word-break:break-word;
+}
 .roster-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
 .player-card{
   min-height:188px;
@@ -451,4 +467,42 @@ body {
 }
 @keyframes fadeOutPage {
   to { opacity: 0; transform: translateY(-10px); }
+}
+
+
+.portrait img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center top;
+  display:block;
+}
+
+.portrait{
+  min-height:188px;
+}
+
+
+  to{opacity:1; transform:translateY(0)}
+}
+
+
+/* simple page transition */
+body{
+  opacity: 0;
+  animation: pageFadeIn .45s ease forwards;
+}
+
+body.page-leave{
+  animation: pageFadeOut .22s ease forwards !important;
+}
+
+@keyframes pageFadeIn{
+  from{opacity:0; transform:translateY(10px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+@keyframes pageFadeOut{
+  from{opacity:1; transform:translateY(0);}
+  to{opacity:0; transform:translateY(-8px);}
 }

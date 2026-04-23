@@ -105,5 +105,28 @@
   <footer>© 2026 NeverStop All Rights Reserved. | EST. 2026</footer>
 </main>
 
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const links = document.querySelectorAll('a[href]');
+  links.forEach(link => {
+    const href = link.getAttribute('href');
+    if (!href) return;
+    if (href.startsWith('#')) return;
+    if (link.target === '_blank') return;
+    if (href.startsWith('mailto:')) return;
+    if (href.startsWith('http') && !href.includes(location.host)) return;
+
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.body.classList.add('page-leave');
+      setTimeout(() => {
+        window.location.href = this.href;
+      }, 180);
+    });
+  });
+});
+</script>
+
 </body>
 </html>
