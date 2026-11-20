@@ -1,14 +1,22 @@
-# NeverStop Website — 2026 Redesign
+# NeverStop — Official Website
 
-Static HTML/CSS/JS website for NeverStop esports.
+A responsive, static website for the NeverStop competitive esports team.
 
-## Main changes
-- White-first editorial layout with NeverStop red as the main accent
-- Clear information hierarchy inspired by Japanese product/service websites
-- Responsive desktop/mobile navigation
-- Rebuilt Home, About, Roster, News, Partners, Recruit and Contact pages
-- Reworked member profile pages
-- Recruit requirements use native accessible accordion elements
-- No framework or build step required
+## Design
+- High-contrast editorial design: monochrome foundations and NeverStop red accents
+- Cinematic dark home hero with original team logo (no external imagery)
+- Responsive roster, news, recruit, partner and member pages
+- Accessible keyboard focus, skip link and Escape-close mobile navigation
+- Lightweight scroll reveal and page transitions with reduced-motion support
+- Plain HTML, CSS and JavaScript; no framework, dependencies or build step
 
-Open `index.html` in a browser or deploy the folder to any static hosting service.
+## Preview locally
+Open `index.html` in any modern browser, or run a simple static server such as `python3 -m http.server 8080`.
+
+## Deployment
+All files use relative links, so they can be served from a subdirectory (including GitHub Pages project sites). Publish the repository root with GitHub Pages or any static host.
+
+## Main pages
+`index.html`, `about.html`, `members.html`, `news.html`, `sponsor.html`, `recruit.html`, `contact.html`, and player profile pages.
+
+The team information and external community links are carried over from the existing site.
