@@ -20,3 +20,10 @@ All files use relative links, so they can be served from a subdirectory (includi
 `index.html`, `about.html`, `members.html`, `news.html`, `sponsor.html`, `recruit.html`, `contact.html`, and player profile pages.
 
 The team information and external community links are carried over from the existing site.
+
+## Seamless page transitions (November 2026)
+- Links load same-site HTML in the background and replace only `#page-content`.
+- Header/footer stay in place, with URL, title, navigation state and browser history synchronized.
+- HTML destinations are prefetched, cached during a visit, and can be opened directly.
+- Graceful fallback to normal navigation if asynchronous page fetching fails.
+- No additional libraries or build tools required.

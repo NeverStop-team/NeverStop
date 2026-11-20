@@ -376,3 +376,16 @@ a,button{-webkit-tap-highlight-color:transparent}
  .js-motion .will-reveal,.js-motion .will-reveal.is-revealed{opacity:1;transform:none;transition:none}
  .hero-panel-logo,.roster-card,.value-row,.button{transition:none}
 }
+
+/* Seamless page navigation: no document-wide loading flash. */
+body, body.page-leave { opacity: 1; animation: none; }
+#page-content { min-height: 36vh; }
+#page-content.page-enter { animation: ns-page-enter .19s cubic-bezier(.22,1,.36,1) both; }
+@keyframes ns-page-enter {
+  from { opacity: .92; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+#main-content:focus { outline: none; }
+@media (prefers-reduced-motion: reduce) {
+  #page-content.page-enter { animation: none; }
+}
