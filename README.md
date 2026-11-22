@@ -27,3 +27,6 @@ The team information and external community links are carried over from the exis
 - HTML destinations are prefetched, cached during a visit, and can be opened directly.
 - Graceful fallback to normal navigation if asynchronous page fetching fails.
 - No additional libraries or build tools required.
+
+## Logo asset refresh
+The original `logo.png` is retained as a backup. The site's header, hero and footer use `logo-transparent.png`, a standalone PNG version of the existing official NeverStop emblem with the solid-black background color marked transparent. Layout and proportions are tuned for the square mark. All routes remain static HTML.
