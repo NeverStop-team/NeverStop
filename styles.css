@@ -874,56 +874,5 @@ body, body.page-leave { opacity: 1; animation: none; }
   background:#e9ebee;
 }
 
-
-
-
-/* Yamada's waving sticker stays in the name block: instant on desktop hover. */
-.roster-info.roster-info-wave {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  min-height: 150px;
-  padding-bottom: 88px;
-  align-items: start;
-}
-.profile-name-zone {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  padding-bottom: 88px;
-}
-.profile-name-zone .profile-name {
-  position: relative;
-  z-index: 1;
-  margin: 8px 0 0;
-}
-.wave-mascot {
-  position: absolute;
-  z-index: 2;
-  right: 10px;
-  bottom: -7px;
-  display: block;
-  width: 90px;
-  max-width: 30%;
-  height: auto;
-  aspect-ratio: 1;
-  object-fit: contain;
-  pointer-events: none;
-  opacity: 0;
-  visibility: hidden;
-  transform: none;
-  transition: none;
-}
-.roster-wave-mascot { width: 90px; right: 12px; }
-.profile-wave-mascot { width: 88px; right: 0; }
-@media (hover: hover) and (pointer: fine) {
-  .roster-card:hover .roster-wave-mascot,
-  .roster-card:focus-visible .roster-wave-mascot,
-  .profile-card:hover .profile-wave-mascot {
-    opacity: 1;
-    visibility: visible;
-  }
-}
-@media (hover: none), (prefers-reduced-motion: reduce) {
-  .wave-mascot { display: none !important; }
-}
+/* Individual social accounts: two cards, responsive without empty third column. */
+.account-list{grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))}
