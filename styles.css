@@ -826,3 +826,10 @@ body, body.page-leave { opacity: 1; animation: none; }
   .site-intro-main-link,.site-intro-player,
   .site-intro-sub-link,.site-intro-roster-link { transition:none!important; }
 }
+
+/* Name-only player list until individual player biographies are provided. */
+.site-intro-player{grid-template-columns:minmax(0,1fr) 18px}
+.site-intro-player-name,.roster-name,.profile-name{overflow-wrap:anywhere;line-break:strict}
+.profile-avatar-initial{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic","Noto Sans JP",sans-serif;letter-spacing:0;font-size:clamp(72px,8vw,100px)}
+@media(max-width:1040px){.site-intro-player{grid-template-columns:minmax(0,1fr) 18px}}
+@media(max-width:720px){.site-intro-player{grid-template-columns:minmax(0,1fr) 18px}}
