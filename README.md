@@ -38,3 +38,9 @@ The original `logo.png` is retained as a backup. The site's header, hero and foo
 
 ## Natural homepage direction (November 27, 2026)
 The homepage uses a restrained light editorial hero with Japanese team messaging and direct links to the real Apex Legends roster. Reviewed ZETA DIVISION, REJECT, Fnatic and Team Liquid official sites for content hierarchy. No new generated images or fake achievements; existing JS navigation and content are unchanged.
+
+## Open community + competitive screening (Nov 27, 2026)
+- Discord community: open participation, no competitive selection required.
+- Competition role: screened application, approval by authorized staff, automatic Discord role assignment.
+- Public RECRUIT page explains the separate tracks. The actual application link stays unpublished until the separate Cloudflare Worker is deployed and tested.
+- Backend, admin dashboard, OAuth login and D1 migration are in the `competitive/` directory. Review `competitive/README.md` for deployment and security requirements.
