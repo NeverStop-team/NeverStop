@@ -35,3 +35,6 @@ The original `logo.png` is retained as a backup. The site's header, hero and foo
 - Transitions begin only when the next HTML page is ready; the old page remains visible while loading.
 - Short exit, headline/content stagger and red header trace for an intentional, responsive feel.
 - Keeps SPA-style navigation, prefetching, browser history and reduced-motion accessibility.
+
+## Natural homepage direction (November 27, 2026)
+The homepage uses a restrained light editorial hero with Japanese team messaging and direct links to the real Apex Legends roster. Reviewed ZETA DIVISION, REJECT, Fnatic and Team Liquid official sites for content hierarchy. No new generated images or fake achievements; existing JS navigation and content are unchanged.
