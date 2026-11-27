@@ -30,3 +30,8 @@ The team information and external community links are carried over from the exis
 
 ## Logo asset refresh
 The original `logo.png` is retained as a backup. The site's header, hero and footer use `logo-transparent.png`, a standalone PNG version of the existing official NeverStop emblem with the solid-black background color marked transparent. Layout and proportions are tuned for the square mark. All routes remain static HTML.
+
+## Page-motion refinement (November 2026)
+- Transitions begin only when the next HTML page is ready; the old page remains visible while loading.
+- Short exit, headline/content stagger and red header trace for an intentional, responsive feel.
+- Keeps SPA-style navigation, prefetching, browser history and reduced-motion accessibility.

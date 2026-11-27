@@ -131,15 +131,34 @@ document.addEventListener('DOMContentLoaded', () => {
     requestAnimationFrame(() => { html.style.scrollBehavior = original; });
   }
 
+  // The next page is loaded before the exit begins, so slow connections
+  // never leave an empty viewport. Subtle motion keeps the existing fast feel.
   async function showPage(url, mode = 'push') {
     const id = ++requestId;
     setMenu(false);
+    const current = document.getElementById('page-content');
+    current?.classList.remove('page-exit', 'page-enter');
+    body.classList.remove('nav-transitioning');
+    if (!reducedMotion.matches) {
+      // Re-trigger the slim red header trace for each navigation.
+      void body.offsetWidth;
+      body.classList.add('nav-transitioning');
+    }
+
     try {
       const targetDoc = await loadPage(url);
       if (id !== requestId) return;
       const previous = document.getElementById('page-content');
       const target = targetDoc.getElementById('page-content');
       if (!previous || !target) throw new Error('Missing page shell');
+
+      if (!reducedMotion.matches) {
+        previous.classList.remove('page-enter');
+        previous.classList.add('page-exit');
+        await new Promise(resolve => window.setTimeout(resolve, 115));
+        if (id !== requestId) return;
+      }
+
       if (mode === 'push') {
         rememberScroll();
         history.pushState({ neverstop: true }, '', url.href);
@@ -160,9 +179,16 @@ document.addEventListener('DOMContentLoaded', () => {
       requestAnimationFrame(() => revealSections(next));
     } catch (err) {
       if (id !== requestId) return;
+      document.getElementById('page-content')?.classList.remove('page-exit');
       console.warn('Soft navigation fallback:', err);
       if (mode === 'pop') window.location.reload();
       else window.location.assign(url.href);
+    } finally {
+      if (id === requestId) {
+        window.setTimeout(() => {
+          if (id === requestId) body.classList.remove('nav-transitioning');
+        }, 450);
+      }
     }
   }
 

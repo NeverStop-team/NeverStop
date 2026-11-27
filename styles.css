@@ -377,17 +377,95 @@ a,button{-webkit-tap-highlight-color:transparent}
  .hero-panel-logo,.roster-card,.value-row,.button{transition:none}
 }
 
-/* Seamless page navigation: no document-wide loading flash. */
+/* Seamless navigation: short, tactile motion with a persistent header. */
 body, body.page-leave { opacity: 1; animation: none; }
-#page-content { min-height: 36vh; }
-#page-content.page-enter { animation: ns-page-enter .19s cubic-bezier(.22,1,.36,1) both; }
-@keyframes ns-page-enter {
-  from { opacity: .92; transform: translateY(5px); }
-  to { opacity: 1; transform: translateY(0); }
+#page-content { min-height:36vh; }
+#main-content:focus { outline:none; }
+
+/* Exit begins only after the destination has loaded. */
+#page-content.page-exit {
+  animation: ns-route-out 115ms cubic-bezier(.3,0,.7,1) both;
+  pointer-events:none;
 }
-#main-content:focus { outline: none; }
-@media (prefers-reduced-motion: reduce) {
-  #page-content.page-enter { animation: none; }
+#page-content.page-enter {
+  animation: ns-route-in 360ms cubic-bezier(.18,.86,.3,1) both;
+}
+@keyframes ns-route-out {
+  from { opacity:1; transform:translate3d(0,0,0); }
+  to   { opacity:.45; transform:translate3d(0,-8px,0) scale(.996); }
+}
+@keyframes ns-route-in {
+  from { opacity:.38; transform:translate3d(0,17px,0) scale(.994); }
+  to   { opacity:1; transform:translate3d(0,0,0) scale(1); }
+}
+
+/* The headline and supporting content follow the page with a gentle stagger. */
+.page-enter .home-hero .eyebrow,
+.page-enter .page-hero .eyebrow,
+.page-enter .hero-topline {
+  animation:ns-detail-in 370ms 45ms cubic-bezier(.16,1,.3,1) both;
+}
+.page-enter .home-hero h1,
+.page-enter .page-title {
+  animation:ns-detail-in 470ms 75ms cubic-bezier(.16,1,.3,1) both;
+}
+.page-enter .hero-lead,
+.page-enter .page-description,
+.page-enter .breadcrumb {
+  animation:ns-detail-in 450ms 130ms cubic-bezier(.16,1,.3,1) both;
+}
+.page-enter .hero-cta,
+.page-enter .hero-panel,
+.page-enter .roster-grid,
+.page-enter .news-list,
+.page-enter .contact-grid,
+.page-enter .division-grid,
+.page-enter .profile-grid {
+  animation:ns-detail-in 470ms 155ms cubic-bezier(.16,1,.3,1) both;
+}
+@keyframes ns-detail-in {
+  from { opacity:0; transform:translate3d(0,14px,0); }
+  to   { opacity:1; transform:translate3d(0,0,0); }
+}
+
+/* A thin red slash at the bottom of the fixed header marks navigation. */
+.site-header::after {
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-1px;
+  height:2px;
+  z-index:3;
+  pointer-events:none;
+  background:var(--red);
+  transform:scaleX(0);
+  transform-origin:left center;
+}
+.nav-transitioning .site-header::after {
+  animation:ns-route-trace 450ms cubic-bezier(.2,.85,.28,1) both;
+}
+@keyframes ns-route-trace {
+  0% { transform:scaleX(0); opacity:0; }
+  17% { opacity:1; }
+  72% { transform:scaleX(1); opacity:1; }
+  100% { transform:scaleX(1); opacity:0; }
+}
+
+@media (max-width:720px) {
+  #page-content.page-enter { animation-duration:300ms; }
+  .page-enter .home-hero h1,.page-enter .page-title { animation-duration:400ms; }
+}
+@media (prefers-reduced-motion:reduce) {
+  #page-content.page-exit,#page-content.page-enter,
+  .page-enter .home-hero .eyebrow,.page-enter .page-hero .eyebrow,
+  .page-enter .hero-topline,.page-enter .home-hero h1,.page-enter .page-title,
+  .page-enter .hero-lead,.page-enter .page-description,.page-enter .breadcrumb,
+  .page-enter .hero-cta,.page-enter .hero-panel,.page-enter .roster-grid,
+  .page-enter .news-list,.page-enter .contact-grid,.page-enter .division-grid,
+  .page-enter .profile-grid,.nav-transitioning .site-header::after {
+    animation:none!important;
+  }
 }
 
 
