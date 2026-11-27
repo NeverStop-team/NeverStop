@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow"><meta name="theme-color" content="#151619">
+<title>運営ダッシュボード | NeverStop</title>
+<link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script>
+</head><body data-page="admin">
+<header class="topbar"><div class="shell topbar-inner">
+  <a class="wordmark" href="/">NEVERSTOP<span>.</span></a>
+  <nav><a href="/">ENTRY</a><a href="https://neverstop-team.github.io/NeverStop/" target="_blank" rel="noopener noreferrer">OFFICIAL SITE ↗</a></nav>
+</div></header>
+<main class="shell">
+  <section class="intro"><div class="eyebrow">RECRUITMENT / OPERATIONS</div><h1>競技審査を管理する。</h1>
+    <p>申請の確認、審査、Discord競技ロールの付与を一か所で管理します。運営者のみアクセスできます。</p>
+  </section>
+  <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+  <section class="panel" id="admin-login">
+    <span class="panel-caption">STAFF ACCESS</span><h2>運営スタッフとしてログイン</h2>
+    <p>許可されたDiscordユーザーIDだけが審査画面にアクセスできます。</p>
+    <a class="primary" href="/auth/login?return=/admin.html">Discordでログイン</a>
+  </section>
+  <section id="admin-workspace" hidden>
+    <div class="between dashboard-heading"><div class="eyebrow">APPLICATIONS <span id="total-count"></span></div>
+      <div class="actions"><button type="button" class="secondary" id="refresh">再読み込み</button><button type="button" class="secondary" id="admin-logout">ログアウト</button></div></div>
+    <div class="summary-row" id="summary-row"></div>
+    <div class="filter-row" role="group" aria-label="審査状態で絞り込み">
+      <button class="filter active" type="button" data-filter="all">すべて</button>
+      <button class="filter" type="button" data-filter="pending">未審査</button>
+      <button class="filter" type="button" data-filter="reviewing">保留</button>
+      <button class="filter" type="button" data-filter="approved">承認済み</button>
+      <button class="filter" type="button" data-filter="rejected">不採用</button>
+      <button class="filter" type="button" data-filter="role_error">要確認</button>
+    </div>
+    <div class="application-list" id="applications"></div>
+  </section>
+</main>
+<footer><div class="shell">NeverStop · Restricted staff operations</div></footer>
+</body></html>
