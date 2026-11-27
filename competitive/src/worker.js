@@ -91,7 +91,7 @@ async function authLogin(request,env,url) {
     redirect_uri:url.origin+"/auth/callback",
     scope:"identify",
     state,
-    prompt:"none"
+    prompt:"consent"
   });
   return redirect("https://discord.com/oauth2/authorize?"+params.toString(),
     [setCookie(OAUTH_STATE,state,600),setCookie(OAUTH_NEXT,destination==="/admin.html"?"admin":"apply",600)]);
@@ -123,7 +123,9 @@ async function authCallback(request,env,url) {
 async function logout(request,env,session) {
   if(!session||!protectedMutation(request,session))return fail("ログイン情報が無効です",403);
   await env.DB.prepare("DELETE FROM sessions WHERE token_hash=?").bind(session.token_hash).run();
-  return redirect("/",[setCookie(SESSION,"",0)]);
+  const out=json({ok:true});
+  out.headers.append("Set-Cookie",setCookie(SESSION,"",0));
+  return out;
 }
 async function createApplication(request,env,session) {
   if(!session)return fail("Discordでログインしてください",401);
@@ -171,17 +173,17 @@ async function adminDecision(request,env,session,id) {
   const memo=clean(note,500),now=new Date().toISOString();
   const record=await env.DB.prepare("SELECT id,discord_id,status FROM applications WHERE id=?").bind(id).first();
   if(!record)return fail("応募が見つかりません",404);
-  if(!["pending","reviewing"].includes(record.status))return fail("この申請はすでに処理されています",409);
+  if(!["pending","reviewing","role_error"].includes(record.status))return fail("この申請はすでに処理されています",409);
   if(action==="reviewing"||action==="reject"){
     const next=action==="reject"?"rejected":"reviewing";
-    const r=await env.DB.prepare("UPDATE applications SET status=?,moderator_id=?,moderator_note=?,updated_at=? WHERE id=? AND status IN ('pending','reviewing')")
+    const r=await env.DB.prepare("UPDATE applications SET status=?,moderator_id=?,moderator_note=?,updated_at=? WHERE id=? AND status IN ('pending','reviewing','role_error')")
       .bind(next,session.discord_id,memo,now,id).run();
     if(r.meta.changes!==1)return fail("別の運営者が先に操作しました",409);
     await audit(env,id,session.discord_id,next,memo);
     return json({ok:true,status:next});
   }
   // Reserve the application to prevent double approval while Discord is called.
-  const reserved=await env.DB.prepare("UPDATE applications SET status='granting',updated_at=? WHERE id=? AND status IN ('pending','reviewing')")
+  const reserved=await env.DB.prepare("UPDATE applications SET status='granting',updated_at=? WHERE id=? AND status IN ('pending','reviewing','role_error')")
     .bind(now,id).run();
   if(reserved.meta.changes!==1)return fail("別の運営者が先に操作しました",409);
   try {
