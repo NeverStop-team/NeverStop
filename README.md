@@ -43,4 +43,5 @@ The homepage uses a restrained light editorial hero with Japanese team messaging
 - Discord community: open participation, no competitive selection required.
 - Competition role: screened application, approval by authorized staff, automatic Discord role assignment.
 - Public RECRUIT page explains the separate tracks. The actual application link stays unpublished until the separate Cloudflare Worker is deployed and tested.
-- Backend, admin dashboard, OAuth login and D1 migration are in the `competitive/` directory. Review `competitive/README.md` for deployment and security requirements.
+- Backend, admin dashboard, Discord OAuth and D1 schema are maintained in the separate private `NeverStop-Recruitment` repository. The public site stays static and does not host applicant records.
+- The competitive application remains `準備中` until Cloudflare Workers/D1 and Discord are configured, tested, and a real application URL is available.
