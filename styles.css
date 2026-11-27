@@ -876,7 +876,8 @@ body, body.page-leave { opacity: 1; animation: none; }
 
 
 
-/* Yamada's animated mascot lives in the NAME area, never over the portrait. */
+
+/* Yamada's waving sticker stays in the name block: instant on desktop hover. */
 .roster-info.roster-info-wave {
   position: relative;
   isolation: isolate;
@@ -905,13 +906,13 @@ body, body.page-leave { opacity: 1; animation: none; }
   width: 90px;
   max-width: 30%;
   height: auto;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 1;
   object-fit: contain;
   pointer-events: none;
   opacity: 0;
-  transform: translate3d(0, 75%, 0) scale(.90);
-  transform-origin: 50% 100%;
-  transition: opacity .18s ease, transform .32s cubic-bezier(.16, 1, .3, 1);
+  visibility: hidden;
+  transform: none;
+  transition: none;
 }
 .roster-wave-mascot { width: 90px; right: 12px; }
 .profile-wave-mascot { width: 88px; right: 0; }
@@ -920,7 +921,7 @@ body, body.page-leave { opacity: 1; animation: none; }
   .roster-card:focus-visible .roster-wave-mascot,
   .profile-card:hover .profile-wave-mascot {
     opacity: 1;
-    transform: translate3d(0, 0, 0) scale(1);
+    visibility: visible;
   }
 }
 @media (hover: none), (prefers-reduced-motion: reduce) {
